@@ -20,6 +20,6 @@ public class AppExceptionsHandler {
 		
 		ErrorMessage errorMessage = new ErrorMessage(new Date(), ex.getMessage());
 		
-		return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.NOT_FOUND);
 	}
 }
