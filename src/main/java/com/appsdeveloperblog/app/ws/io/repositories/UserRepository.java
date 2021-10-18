@@ -13,4 +13,5 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 	
 	//function made with find then By then the field by which u are looking
 	UserEntity findByEmail(String email);
+	UserEntity findByUserId(String userId);
 }
