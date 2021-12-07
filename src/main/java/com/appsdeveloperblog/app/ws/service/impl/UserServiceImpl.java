@@ -97,14 +97,16 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserDto getUserByUserId(String userId) {
 		
-		UserDto returnValue = new UserDto();
+		//UserDto returnValue = new UserDto();
 		UserEntity userEntity  = userRepository.findByUserId(userId);
 		
 		
 		if(userEntity == null)
 			throw new UserServiceException("User with ID: " + userId + " not found");
 		
-		BeanUtils.copyProperties(userEntity, returnValue);
+		//BeanUtils.copyProperties(userEntity, returnValue);
+		ModelMapper modelMapper = new ModelMapper();
+		UserDto returnValue = modelMapper.map(userEntity, UserDto.class);
 		
 		return returnValue;
 	}
@@ -125,7 +127,8 @@ public class UserServiceImpl implements UserService{
 		
 		UserEntity updatedUserDetails = userRepository.save(userEntity);
 		
-		BeanUtils.copyProperties(updatedUserDetails, returnValue);
+		//BeanUtils.copyProperties(updatedUserDetails, returnValue);
+		returnValue = new ModelMapper().map(updatedUserDetails, UserDto.class);
 		return returnValue;
 	}
 
